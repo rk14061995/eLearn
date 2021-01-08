@@ -7,7 +7,7 @@
         top: 0;
         left: 0;
         z-index: 999;
-        background: rgba(255,255,255,0.8) url("../../../assets/images/wait.gif") center no-repeat;
+        background: rgba(255,255,255,0.8) url("assets/images/wait.gif") center no-repeat;
     }
     /*.me{
         text-align: center;
@@ -24,7 +24,7 @@
 
 
       <div class="content">
-        <div class="row ">
+        <div class="row me">
          
           <div class="col-md-12 me">
             <div class="card card-user">
@@ -85,7 +85,7 @@
                     <div class="col-md-6 pr-3 ">
                       <div class="form-group col-md-6">
                         <label><strong>Video</strong></label>
-                        <input type="file" style="opacity:1;margin-left: 16px;"name="video_image" class="">
+                          <input type="file" style="opacity:1;margin-left: 16px;" name="video_image"class="form-control1"  >
                       </div>
                     </div>
                     </div>
@@ -101,16 +101,16 @@
             </div>
           </div>
         </div>
-
+<div class="overlay" ></div>
       </div>
 
       <script>
   $(document).on({
     ajaxStart: function(){
-        $("body").addClass("loading"); 
+        $(".me").addClass("loading"); 
     },
     ajaxStop: function(){ 
-        $("body").removeClass("loading"); 
+        $(".me").removeClass("loading"); 
     }    
 });
       $(document).ready(function(){

@@ -7,12 +7,6 @@ class Admin_Dashboard extends CI_Controller
 	// 	  if(!$this->session->userdata('login_admin')){
 	// 	redirect('Login-Page');
 	// }
-		    
-	// $this->load->model('Admin_Category_model','Admin_C');	
-	// $this->load->model('Admin_Job_Model','Admin_J');
-	// $this->load->model('Admin_Story_Model','Admin_S');
-	// $this->load->model('Admin_Company_Model','Admin_Com');
-	// $this->load->model('Admin_User_Model','Admin_User');
 	
 	// }
 	public function viewDashbaord()
@@ -76,20 +70,20 @@ class Admin_Dashboard extends CI_Controller
         $class=$this->input->post('class');
          $subject=$this->input->post('subject');
         
-        $this->load->helper('string');
+         $this->load->helper('string');
         $config['max_size'] = '102400000';
         $config['allowed_types'] = 'mp4'; 
         $config['overwrite'] = FALSE;
         $config['remove_spaces'] = TRUE;
         // $uploadPath = 'assets/video/';
-        $config['upload_path'] = '../../assets/video/';
+        $config['upload_path'] = 'assetss/video/';
         $video_name =$_FILES['video_image']['name'];
         $config['file_name'] ="video-".date("Y-m-d-H-i-s").$video_name;
         $this->load->library('upload',$config);  
         
         $this->upload->initialize($config); 
-     // print_r( $config['file_name']);
-     //  die;
+    //   print_r( $this->upload->display_errors());
+    //   die;
        if (!$this->upload->do_upload('video_image'))
        {
            die(json_encode(array('status'=>0,'msg'=>'file Empty')));
@@ -100,8 +94,8 @@ class Admin_Dashboard extends CI_Controller
                             'class_id'=>$class,
                         	'subject_id'=>$subject,
                         	 'title'=>$title);
-            print_r($data);
-            die;
+            // print_r($data);
+            // die;
             $this->db->where($data);
             $this->db->insert('video',$data);
             die(json_encode(array('status'=>1,'data'=>'success')));
