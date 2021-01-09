@@ -24,6 +24,124 @@
 
 
       <div class="content">
+
+
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card p-2">
+              <div class="card-header">
+                <h5 class="card-title">Add Video</h5> 
+                <hr>
+              </div>
+              <div class="card-body">
+                <form id="subject">  
+                  
+                    <div class="row">
+                      <div class="col-md-4">
+                        <label><strong>Class</strong></label>
+                        <select  class="form-control " required name="class">
+                            <option value="">Select Class</option>
+                            <?php
+                              foreach ($class as $cls) 
+                              {
+                                echo '<option value="'.$cls->id.'">'.$cls->class.'</option>';
+                    
+                              }
+                            ?>  
+                          </select>
+                      </div>
+                      <div class="col-md-4">
+                        <label><strong>Subject</strong></label>
+                        <select  class="form-control " required name="subject">
+                          <option value="">Select Subject</option>
+                          <?php
+                                    foreach ($subject as $sub) 
+                                    {
+                                      echo '<option value="'.$sub->id.'">'.$sub->subject.'</option>';
+                          
+                                    }
+                                    ?>  
+                        </select>
+                      </div>
+                      <div class="col-md-4">
+                        <label><strong>Title</strong></label>
+                        <input type="text" style="opacity:1;"name="title" class="form-control">
+                      </div>
+                      
+                    
+                    </div>
+                    <br>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <input type="file" style="opacity:1;margin-left: 16px;" name="video_image"class="form-control1"  >
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                      <button type="submit" class="btn btn-primary btn-round">Add Video</button>
+                      </div>
+                    </div>
+                </form>
+              </div>
+                
+              
+            </div>
+          </div>
+        </div>
+      
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card p-2">
+              <div class="card-header">
+                <h5 class="card-title">Subjects</h5> 
+                <hr>
+              </div>
+              <div class="card-body">
+                <table id="" class="table ">
+                  <thead>
+                      <tr>
+                          <th>S.No.</th>
+                          <th>Subject</th>
+                          <th>Action</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    <?php $i=1;?>
+                    <?php foreach($subjects as $sub): ?>
+                      <tr>
+                          <td><?=$i?></td>
+                          <td><?=ucwords($sub->subject)?></td>
+                          <td><a href="javascript:void(0)" class="btn btn-info"><i class="fa fa-pencil" aria-hidden="true"></i></a><a href="javascript:void(0)" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                      </tr>
+                      <?php $i++?>
+                    <?php endforeach;?>
+                  </tbody>
+                </table>
+              </div>
+                
+              
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
         <div class="row me">
          
           <div class="col-md-12 me">
@@ -32,10 +150,7 @@
                 <h5 class="card-title">Add Video</h5>
                  <button style=" margin-left: 988px"> view</button>  
               </div>
-              <!-- <div class="loat-right" style=" margin-left: 988px">
-                 <button style=" margin-left: 988px"> view</button>      
-              </div> -->
-               
+            
 
                 <form id="upload">
                   <div class="row">
@@ -99,7 +214,7 @@
                 </form>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
 <div class="overlay" ></div>
       </div>

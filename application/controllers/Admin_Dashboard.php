@@ -26,8 +26,8 @@ class Admin_Dashboard extends CI_Controller
 	}
 	public function addSubject()
 	{ 		
-       
-		 $this->load->view('admin/Layout/header');
+		$data['subjects']=$this->db->get('subject')->result();
+		 $this->load->view('admin/Layout/header',$data);
 		 $this->load->view('admin/Pages/subject');
 		 $this->load->view('admin/Layout/footer');
 	}
@@ -41,7 +41,8 @@ class Admin_Dashboard extends CI_Controller
 	}
 	public function addClass()
 	{ 		
-         $this->load->view('admin/Layout/header');
+		$data['classes']=$this->db->get('class')->result();
+         $this->load->view('admin/Layout/header',$data);
 		 $this->load->view('admin/Pages/addclass');
 		 $this->load->view('admin/Layout/footer');
 	}
