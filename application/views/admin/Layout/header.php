@@ -45,27 +45,39 @@
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li class="active ">
-            <a href="./dashboard.html">
+            <a href="<?=base_url('Admin_Dashboard/viewDashbaord')?>">
               <i class="nc-icon nc-bank"></i>
               <p>Dashboard</p>
             </a>
           </li>
           <li>
             <a href="<?=base_url('Admin_Dashboard/addSubject')?>">
-              <i class="nc-icon nc-diamond"></i>
+              <i class="fa fa-file"></i>
               <p>Subjects</p>
             </a>
           </li>
           <li>
             <a href="<?=base_url('Admin_Dashboard/addClass')?>">
-              <i class="nc-icon nc-diamond"></i>
+              <i class="fa fa-address-card"></i>
               <p>Class</p>
             </a>
           </li>
            <li>
             <a href="<?=base_url('Admin_Dashboard/addVideo')?>">
-              <i class="nc-icon nc-diamond"></i>
+              <i class="fa fa-video-camera"></i>
               <p>Video</p>
+            </a>
+          </li>
+           <li>
+            <a href="<?=base_url('Admin_Dashboard/viewNotes')?>">
+              <i class="fa fa-sticky-note-o"></i>
+              <p>Notes</p>
+            </a>
+          </li>
+            <li>
+            <a href="<?=base_url('Admin_Dashboard/viewQuery')?>">
+              <i class="fa fa-sticky-note-o"></i>
+              <p>Users Queries</p>
             </a>
           </li>
           <!-- <li>
