@@ -11,7 +11,7 @@
               <div class="flex lg:gap-4 gap-y-3 flex-wrap uk-link-reset">
           
                 <div class="lg:w-4/12 w-full">
-                  <img src="assets/images/logo-white.html" alt="" class="w-40 mb-2">
+                  <img src="<?=base_url()?>assets/web/images/logo-white.html" alt="" class="w-40 mb-2">
                   <p> <strong>Courster</strong> lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna sed diam nonummy nibh euismod . </p>
                 </div>
                 <div class="mb-5 lg:w-2/12 md:w-1/3 w-1/2 ml-auto">
@@ -76,11 +76,11 @@
 
  <!-- Scripts
     ================================================== -->
-    <script src="assets/js/tippy.all.min.js"></script>  
-    <script src="assets/js/jquery-3.3.1.min.js"></script>
-    <script src="assets/js/uikit.js"></script>
-    <script src="assets/js/simplebar.min.js"></script>
-    <script src="assets/js/custom.js"></script>
-    <script src="assets/js/bootstrap-select.min.js"></script>
+    <script src="<?=base_url()?>assets/web/js/tippy.all.min.js"></script>  
+    <script src="<?=base_url()?>assets/web/js/jquery-3.3.1.min.js"></script>
+    <script src="<?=base_url()?>assets/web/js/uikit.js"></script>
+    <script src="<?=base_url()?>assets/web/js/simplebar.min.js"></script>
+    <script src="<?=base_url()?>assets/web/js/custom.js"></script>
+    <script src="<?=base_url()?>assets/web/js/bootstrap-select.min.js"></script>
 </body>
 </html>

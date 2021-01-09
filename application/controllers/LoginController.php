@@ -9,12 +9,14 @@ class LoginController extends CI_Controller {
 
  	}
     public  function studentRegistration(){
-        $this->load->view('website/layout/header');
+		$data['subject']=$this->db->get('subject')->result();
+        $this->load->view('website/layout/header',$data);
         $this->load->view('website/pages/form-register');
         $this->load->view('website/layout/footer');
     }
     public  function studentLogin(){
-        $this->load->view('website/layout/header');
+		$data['subject']=$this->db->get('subject')->result();
+        $this->load->view('website/layout/header',$data);
         $this->load->view('website/pages/form-login');
         $this->load->view('website/layout/footer');
     }
@@ -42,6 +44,7 @@ class LoginController extends CI_Controller {
 		}
  	}
  	public  function studentLogout(){
+		 
  		if($this->session->userdata('studentSession')){
  			$this->session->unset_userdata('studentSession');
  			// $this->session->sess_destroy();
