@@ -6,7 +6,7 @@
 
      <!-- Basic Page Needs
     ================================================== -->
-    <title>Courster Learning HTML Template</title>
+    <title>Learn Online</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Learn">
@@ -38,9 +38,9 @@
                     <!-- Logo -->
                     <div id="logo">
                         <a href="<?=base_url()?>">
-                             <img src="<?=base_url()?>assets/web/images/logo.png" alt="">
-                            <img src="<?=base_url()?>assets/web/images/logo-light.png" class="logo_inverse" alt="">
-                            <img src="<?=base_url()?>assets/web/images/logo-mobile.png" class="logo_mobile" alt="">
+                             <img src="<?=base_url()?>assets/web/images/logo.jpg" alt="">
+                            <img src="<?=base_url()?>assets/web/images/logo.jpg" class="logo_inverse" alt="">
+                            <img src="<?=base_url()?>assets/web/images/logo.jpg" class="logo_mobile" alt="">
                         </a>
                     </div>
 
