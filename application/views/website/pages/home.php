@@ -7,7 +7,7 @@
                 <div class="flex">
                     <div class="lg:text-left lg:w-5/12 space-y-6 text-center uk-light">
                         <h1 class="lg:text-5xl text-3xl leading-none"> Learn on your <br class="uk-visible@s"> schedule </h1>
-                        <p class="text-lg">The Courster delivers much more than
+                        <p class="text-lg">The eLearn delivers much more than
                             just online courses. You will challenge yourself,
                             deepen your skills .</p>
 
@@ -32,8 +32,8 @@
             <div class="uk-container">
           
                 <div class="text-center md:w-2/4 m-auto mb-12">
-                    <h1 class="lg:text-3xl text-2xl mb-4"> Welcome To <span class="font-bold text-green-600">  Courster </span> </h1>
-                    <p class="text -lg "> Welcome to Courster collection of world-class online learning opportunities. The Courster Online Learning portal provides a gateway for the public to access </p>
+                    <h1 class="lg:text-3xl text-2xl mb-4"> Welcome To <span class="font-bold text-green-600">  eLearn </span> </h1>
+                    <p class="text -lg "> Welcome to eLearn collection of world-class online learning opportunities. The eLearn Online Learning portal provides a gateway for the public to access </p>
                   </div>
           
               <div class="grid md:grid-cols-3 sm:grid-cols-2 gap-6 text-center">
@@ -70,48 +70,53 @@
                 <div class="lg:-my-16 -mb-10 items-center justify-between lg:flex lg:pt-0 pt-12">
                     <div class="lg:text-left lg:w-6/12 text-center uk-light">
                         <h1 class="font-extrabold leading-none mb-5 lg:text-4xl text-2xl text-white"> Start your Leaning today.</h1>
-                        <p class="font-medium lg:text-lg"> The Courster delivers much more than
+                        <p class="font-medium lg:text-lg"> The eLearn delivers much more than
                             just online courses. You will challenge yourself,
                             deepen your skills . </p>
-                        <p class="-mt-2 text-sm">No Creidit Card required</p>
+                        <!-- <p class="-mt-2 text-sm">No Creidit Card required</p> -->
                     </div>
                     <div class="lg:w-5/12 ml-auto">
-                        <div class="relative bg-white shadow-xl rounded-md">
+                        <div class=" bg-white shadow-xl rounded-md">
                             <!-- card body -->
-                            <div class="lg:p-12 p-6 space-y-3">
-                                <div>
-                                    <label class="mb-0"> Your Name </label>
-                                    <input placeholder="Your Name"
-                                        class="bg-gray-200 shadow-none border focus:border-blue-600 mt-2 outline-none px-3 py-2 rounded-md w-full">
-                                </div>
-                                <div>
-                                    <label class="mb-0"> Email Address </label>
-                                    <input placeholder="Info@example.com"
-                                        class="bg-gray-200 shadow-none border w-full px-3 py-2 rounded-md focus:border-blue-600 outline-none mt-2">
-                                </div>
-                                <div>
-                                    <label class="mb-0"> Password </label>
-                                    <input placeholder="******"
-                                        class="bg-gray-200 shadow-none border w-full px-3 py-2 rounded-md focus:border-blue-600 outline-none mt-2">
-                                </div>
-                                <div>
-                                    <label class="mb-0"> Password </label>
-                                    <input placeholder="******"
-                                        class="bg-gray-200 shadow-none border w-full px-3 py-2 rounded-md focus:border-blue-600 outline-none mt-2">
-                                </div>
+                            
+                                <div class="lg:p-12 p-6 space-y-3">
+                                <from action="<?=base_url('New-Registration')?>" id="form1" method="post">
+                                    <div>
+                                        <label class="mb-0"> Your Name </label>
+                                        <input name="full_name" placeholder="Your Name"
+                                            class="bg-gray-200 shadow-none border focus:border-blue-600 mt-2 outline-none px-3 py-2 rounded-md w-full">
+                                    </div>
+                                    <div>
+                                        <label class="mb-0"> Email Address </label>
+                                        <input name="email_" placeholder="Info@example.com"
+                                            class="bg-gray-200 shadow-none border w-full px-3 py-2 rounded-md focus:border-blue-600 outline-none mt-2">
+                                    </div>
+                                    <div>
+                                        <label class="mb-0"> Phone  </label>
+                                        <input name="phone_no" placeholder="9877******"
+                                            class="bg-gray-200 shadow-none border w-full px-3 py-2 rounded-md focus:border-blue-600 outline-none mt-2">
+                                    </div>
+                                    <div>
+                                        <label class="mb-0"> Password </label>
+                                        <input name="user_pass_code" placeholder="******"
+                                            class="bg-gray-200 shadow-none border w-full px-3 py-2 rounded-md focus:border-blue-600 outline-none mt-2">
+                                    </div>
 
-                                <div class="checkbox">
-                                    <input type="checkbox" id="chekcbox1" checked="">
-                                    <label for="chekcbox1"><span class="checkbox-icon"></span> I agree to the <a
-                                            href="pages-terms.html" target="_blank"
-                                            class="uk-text-bold uk-text-small uk-link-reset"> Terms and Conditions </a>
-                                    </label>
+                                    <!-- <div class="checkbox">
+                                        <input type="checkbox" id="chekcbox1" checked="">
+                                        <label for="chekcbox1"><span class="checkbox-icon"></span> I agree to the <a
+                                                href="pages-terms.html" target="_blank"
+                                                class="uk-text-bold uk-text-small uk-link-reset"> Terms and Conditions </a>
+                                        </label>
+                                    </div> -->
+                                    <a href="javascript:void(0)" onclick="document.getElementById('form1').submit();">Register Now </a>
+                                    <!-- <button disabled="false" id="deee_id" type="button"
+                                        class="">
+                                        </button> -->
+                                        </form>
                                 </div>
-
-                                <button type="button"
-                                    class="bg-green-200 font-semibold p-2 mt-2 rounded-md text-center text-green-600 text-white w-full">
-                                    Download Free Sample </button>
-                            </div>
+                            
+                            
 
                         </div>
                     </div>
@@ -177,4 +182,4 @@
             </div>
         </div>
         
-        
+       

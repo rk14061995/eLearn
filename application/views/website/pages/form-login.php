@@ -5,6 +5,12 @@
 
             <div class="uk-width-1-3@m m-auto my-16">
                 <div class="mb-4">
+                <?php
+                    if($this->session->flashdata('err')){
+                        echo '<div class="alert alert-danger">'.$this->session->flashdata('err').'</div>';
+                    }
+
+                ?>
                     <h2 class="mb-0">Welcome <span class="uk-text-bold">back</span></h2>
                     <p class="my-0">Login to manage your account.</p>
                 </div>

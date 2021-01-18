@@ -59,6 +59,7 @@ $route['Register'] = 'LoginController/studentRegistration';
 $route['New-Registration'] = 'LoginController/newStudentRegistration';
 $route['Validate-Login'] = 'LoginController/validateStudentLogin';
 $route['Student-Logout'] = 'LoginController/studentLogout';
+$route['Student-Profile'] = 'Website/userProfile';
 $route['Subject/(:any)'] = 'Website/viewSubject/$1';
 $route['About'] = 'Website/about';
 $route['Contact-Us'] = 'Website/contact_us';

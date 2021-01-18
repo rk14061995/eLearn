@@ -35,12 +35,12 @@ class LoginController extends CI_Controller {
 			}else{
 				echo 'Password Not Match.';
 				$this->session->set_flashdata('err','Invalid Password');
-				redirect('Website');
+				redirect('Login');
 			}
 		}else{
 			echo 'Email Id Not Found.';
 			$this->session->set_flashdata('err','Invalid Email Id');
-			redirect('Website');
+			redirect('Login');
 		}
  	}
  	public  function studentLogout(){

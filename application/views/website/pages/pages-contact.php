@@ -23,22 +23,26 @@
             <div class="container">
 
                 <div class="uk-child-width-1-2@m uk-flex-middle" uk-grid>
-
+                       
                     <div>
+                    <?php
+                                if($this->session->flashdata('msg')){
+                                    echo '<div class="alert alert-info">'.$this->session->flashdata('msg').'</div>';
+                                }
+                        ?>
 
-
-                        <form uk-grid="" class="uk-grid">
+                        <form action="<?=base_url('Website/sendMessage')?>" class="uk-grid" method="post">
                             <div class="uk-width-1-2@s uk-first-column">
-                                <label class="uk-form-label">Username</label>
-                                <input class="uk-input" type="text" placeholder="Username">
+                                <label class="uk-form-label">Full Name</label>
+                                <input class="uk-input" type="text" name="full_name" placeholder="Full Name">
                             </div>
                             <div class="uk-width-1-2@s">
                                 <label class="uk-form-label">Email</label>
-                                <input class="uk-input" type="text" placeholder="Email">
+                                <input class="uk-input" name="email" type="text" placeholder="Email">
                             </div>
                             <div class="uk-width-1-1@s uk-grid-margin uk-first-column">
                                 <label class="uk-form-label">Message</label>
-                                <textarea class="uk-textarea" style=" height:160px"></textarea>
+                                <textarea class="uk-textarea" name="message" style=" height:160px"></textarea>
                             </div>
                             <div class="uk-grid-margin uk-first-column">
                                 <input type="submit" name="Send" class="uk-button primary">
