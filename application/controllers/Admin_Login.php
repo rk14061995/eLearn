@@ -8,7 +8,7 @@ class Admin_Login extends CI_Controller
 
 		parent::__construct();
 		
-		$this->load->model('Admin_Login_model','Admin_L');
+		// $this->load->model('Admin_Login_model','Admin_L');
 	}
 	
 	public function index()
@@ -22,26 +22,23 @@ class Admin_Login extends CI_Controller
 	{
 		$data=array("email"=>$this->input->post('email'),
 					"password"=>$this->input->post('password'));
-		
-		$result=$this->Admin_L->admin_Login($data);
-		if($result)
-		{
-			$this->session->set_userdata('login_admin',$result);	
+		$this->db->where($data);
+		$success=$this->db->get('admin')->result();
+		if(count($success)>0){
+			$this->session->set_userdata('login_admin',$success);	
 			redirect('Admin_Dashboard/viewDashbaord');
-		}
-		else
-		{
-		   
-		   $this->session->set_flashdata('msg','Invalid Email Or Password');
-			redirect('Admin_Login/index');
-		}
+		}else{   
+		$this->session->set_flashdata('msg','Invalid Email Or Password');
+		redirect('Admin_Login/index');
+		}	
+
 	}
 	public function logOut(){
 		$this->session->sess_destroy();
 		redirect('admin');
 	}
 
-	
+
 
 	
 	

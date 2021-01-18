@@ -19,10 +19,13 @@
   <link href="<?=base_url()?>assetss/css/paper-dashboard.css?v=2.0.1" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="<?=base_url()?>assetss/demo/demo.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
+
    <script src="<?=base_url()?>assetss/js/core/jquery.min.js"></script>
-   <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"> </script>
+   <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"> </script>
 <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap.min.js"> </script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+
 </head>
 
 <body class="">
@@ -165,14 +168,14 @@
                 </a>
               </li> -->
               <li class="nav-item btn-rotate dropdown">
-                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="fa fa-user"></i>
                  <!--  <p>
                     <span class="d-lg-none d-md-block">Logout</span>
                   </p> -->
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Logout</a>
+                  <a class="dropdown-item" href="<?=base_url('Admin_Login/logOut')?>">Logout</a>
                   <!-- <a class="dropdown-item" href="#">Another action</a> -->
                   <!-- <a class="dropdown-item" href="#">Something else here</a> -->
                 </div>

@@ -64,4 +64,4 @@ $route['About'] = 'Website/about';
 $route['Contact-Us'] = 'Website/contact_us';
 //Admin
 // $route['admin-dashboard'] = 'Admin_Dashboard/viewDashbaord';
-$route['admin']='Admin_Dashboard/viewDashbaord';
+$route['admin']='Admin_Login/index';

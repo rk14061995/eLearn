@@ -1,20 +1,19 @@
 <?php
 class Admin_Dashboard extends CI_Controller
 {	
-	// function __construct()
-	// {
-	// 	 parent::__construct();
-	// 	  if(!$this->session->userdata('login_admin')){
-	// 	redirect('Login-Page');
-	// }
+	function __construct()
+	{
+		 parent::__construct();
+		  if(!$this->session->userdata('login_admin')){
+		redirect('admin');
+	}
 		    
 	// $this->load->model('Admin_Category_model','Admin_C');	
 	// $this->load->model('Admin_Job_Model','Admin_J');
 	// $this->load->model('Admin_Story_Model','Admin_S');
 	// $this->load->model('Admin_Company_Model','Admin_Com');
 	// $this->load->model('Admin_User_Model','Admin_User');
-	
-	// }
+	}
 	public function viewDashbaord()
 	{ 
   		$data['class']=$this->db->get('class')->num_rows();
@@ -56,8 +55,8 @@ class Admin_Dashboard extends CI_Controller
 	}
 	public function viewQuery()
 	{ 		
-       $data['class']=$this->db->get('class')->result();
-		$data['subject']=$this->db->get('subject')->result();
+       $data['query']=$this->db->get('user_contacts')->result();
+		// $data['subject']=$this->db->get('subject')->result();
 		 $this->load->view('admin/Layout/header');
 		 $this->load->view('admin/Pages/query',$data);
 		 $this->load->view('admin/Layout/footer');
@@ -74,6 +73,38 @@ class Admin_Dashboard extends CI_Controller
 	 		{
 	 		 die(json_encode(array('status'=>0,'message'=>'Try Again ')));
 	 		}
+	 	}
+	 	public function UpdateSubject(){
+	 		// print_r($_POST);
+	 		// echo"cntroller";
+	 		$subjecname=$this->input->post('subjecname');
+	 		$subjectid=$this->input->post('subjectid');
+	 		// print_r($subjecname);
+	 		// print_r($subjectid);
+	 		// die;
+	 		$data=array('subject'=>$subjecname);
+	 		$this->db->where('id',$subjectid);
+	 		 $res=$this->db->update('subject',$data);
+	 		if($res)
+	 		{	
+	 		 die(json_encode(array('status'=>1,'message'=>"add")));
+	 		}
+	 		else
+	 		{
+	 		 die(json_encode(array('status'=>0,'message'=>'Try Again ')));
+	 		}
+	 	}
+	 	public function fetchSubjectData()
+	 	{
+	 		print_r($_POST);
+	 		$subjectid=$this->input->post('subjectid');
+	 		print_r($subjectid);
+			die;
+	 		$this->db->where('id',$subjectid);
+			$data=$this->db->get('subject')->result();
+			print_r($data);
+			die;
+	 		die(json_encode(array('data'=>$data)));
 	 	}
  	public function InsertClass(){
 	 		$class=$this->input->post('class');
@@ -154,7 +185,32 @@ class Admin_Dashboard extends CI_Controller
           
            
         }     
-	
+	public function addUserContact()
+    {		
+
+    	$username=$this->input->post('username');
+        $email=$this->input->post('email');
+         $message=$this->input->post('message');
+          
+        
+       			
+            $data = array('username' =>  $username,
+                            'email'=>$email,
+                        	'message'=>$message);
+            // print_r($data);
+            // die;
+           
+            $this->db->where($data);
+           $res= $this->db->insert('user_contacts',$data);
+            if($res){
+            	die(json_encode(array('status'=>1,'data'=>'success')));
+            }else{
+            	  die(json_encode(array('status'=>0,'data'=>'failed')));
+            }
+          
+           
+        }   
+
 	public function DeleteJobSeeker()
 	{
 		$data=array('user_id'=>$this->input->post('user_id'));
