@@ -12,7 +12,7 @@
           
                 <div class="lg:w-4/12 w-full">
                   <img src="<?=base_url()?>assets/web/images/logo-white.html" alt="" class="w-40 mb-2">
-                  <p> <strong>Courster</strong> lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna sed diam nonummy nibh euismod . </p>
+                  <p> <strong>eLearn</strong> lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna sed diam nonummy nibh euismod . </p>
                 </div>
                 <div class="mb-5 lg:w-2/12 md:w-1/3 w-1/2 ml-auto">
                   <h6 class="text-xl mb-3 font-bold text-white">Company</h6>
@@ -43,7 +43,7 @@
               </div>
               <hr class="border-gr border-gray-600 my-5">
               <div class="flex justify-between">
-                <p> © 2018-2020 Courster. All rights reserved. </p>
+                <p> © 2018-2020 eLearn. All rights reserved. </p>
           
                     <ul class="uk-link-reset text-gray-500 text-xl gap-x-1 flex gap-x-4">
                         <li>

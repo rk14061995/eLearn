@@ -16,12 +16,17 @@
 
     <!-- CSS 
     ================================================== -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="<?=base_url()?>assets/web/css/uikit.css">
     <link rel="stylesheet" href="<?=base_url()?>assets/web/css/tailwind.css">
   <link rel="stylesheet" href="<?=base_url()?>assets/web/css/style.css">
 
     <!-- icons
     ================================================== -->
+    <script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
     <link rel="stylesheet" href="<?=base_url()?>assets/web/css/icons.css">
 </head>
 
@@ -44,12 +49,12 @@
                         </a>
                     </div>
 
-                    <div class="triger" uk-toggle="target: .header_menu ; cls: is-visible">
+                    <div class="triger" uk-toggle="target: .header_menu ; cls: is-visible" style="left:unset;right:1px; top:23px; color:white">
                         <i class="uil-bars"></i>
                     </div>
 
                     <ul class="header_menu">
-                        <li><a href="home.html"> Home</a> </li>
+                        <li><a href="<?=base_url()?>"> Home</a> </li>
                         <li><a href="#" class="active"> Subject </a>
                             <div uk-drop="mode: click" class="mdropdown">
                                 
@@ -89,7 +94,7 @@
                         </a>
                         <div uk-drop="mode: click;offset:5" class="header_dropdown profile_dropdown">
                             <ul>
-                                <li><a href="#">Profile </a> </li>
+                                <li><a href="<?=base_url('Student-Profile')?>" >Profile </a> </li>
                                
                                 <li><a href="<?=base_url('Student-Logout')?>"> Log Out</a></li>
                             </ul>
@@ -101,3 +106,31 @@
                 </div>
             </div>
         </header>
+        <script>
+            $(document).on('click','#student_',function(){
+                $('#studentProfile').modal('show');
+            });
+            // $(document).on('click','#student_',function(){
+            //     $('#studentProfile').modal('show');
+            // });
+        </script>
+
+        <div id="studentProfile" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Some text in the modal.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+                </div>
+
+            </div>
+            </div>
