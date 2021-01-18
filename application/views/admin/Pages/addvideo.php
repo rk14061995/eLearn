@@ -106,17 +106,7 @@
                           <th>Action</th>
                       </tr>
                   </thead>
-                  <tbody>
-                    <?php $i=1;?>
-                    <?php foreach($subjects as $sub): ?>
-                      <tr>
-                          <td><?=$i?></td>
-                          <td><?=ucwords($sub->subject)?></td>
-                          <td><a href="javascript:void(0)" class="btn btn-info"><i class="fa fa-pencil" aria-hidden="true"></i></a><a href="javascript:void(0)" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
-                      </tr>
-                      <?php $i++?>
-                    <?php endforeach;?>
-                  </tbody>
+                 
                 </table>
               </div>
                 
