@@ -66,7 +66,7 @@
                                 
                                 <ul class="grid md:grid-cols-2 gap-3 mb-2">
                                     <?php foreach($subject as $sub): ?>
-                                    <li> <a href="<?=base_url('Subject/').$sub->id?>"><?='$sub->subject'?></a></li>
+                                    <li> <a href="<?=base_url('Notes/viewNotes/').$sub->id?>"><?=$sub->subject?></a></li>
                                     <?php endforeach;?>
                                    
                                 </ul>

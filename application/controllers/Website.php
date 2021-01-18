@@ -28,14 +28,6 @@ class Website extends CI_Controller {
         $this->load->view('website/pages/courses');
         $this->load->view('website/layout/footer');
     }
-    public function viewNotes($sub_id){
-        
-        $data['subject']=$this->db->get('subject')->result();
-        $data['subject_details']=$this->db->where('id',$sub_id)->get('subject')->row();
-        $data['subject_notes']=$this->db->where('subject_id',$sub_id)->get('subject_notes')->result();
-        $this->load->view('website/layout/header',$data);
-        $this->load->view('website/pages/courses_pdf');
-        $this->load->view('website/layout/footer');
-    }
+    
     
 }
