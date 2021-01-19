@@ -53,7 +53,7 @@
                         <tr>
                             <td><?=$i?></td>
                             <td><?=ucwords($sub->subject)?></td>
-                            <td><a href="javascript:void(0)"data-toggle="modal"  sub="<?=$sub->id?>" subname="<?=$sub->subject?>"data-target="#exampleModal" class="btn btn-info fetchsubjectdata"><i class="fa fa-pencil" aria-hidden="true"></i></a><a href="javascript:void(0)" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                            <td><a href="javascript:void(0)"data-toggle="modal"  sub="<?=$sub->id?>" subname="<?=$sub->subject?>"data-target="#exampleModal" class="btn btn-info fetchsubjectdata"><i class="fa fa-pencil" aria-hidden="true"></i></a><a href="javascript:void(0)" sub="<?=$sub->id?>" class="btn btn-danger deletesubject"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
                         </tr>
                         <?php $i++?>
                       <?php endforeach;?>
@@ -149,13 +149,9 @@
           })
       })
              $(document).ready(function(){
-          $('#updatesubject').on('click',function(e){
+          $('#updatesubject').submit(function(e){
             e.preventDefault();
            var formData=new FormData($(this)[0]);   
-           // var subjecname=$('#subjectname').val();
-            // var subjectid=$('#subjectid').val();
-           //  alert(subjectid);
-           // alert(subjecname);
            $.ajax({
             url:"<?=base_url('Admin_Dashboard/UpdateSubject')?>",
              type:"post",
@@ -185,4 +181,32 @@
     
           })
       })
+             $(document).ready(function(){
+            $('.deletesubject').on('click',function(){
+              var sub_id=$(this).attr('sub');
+             $.ajax({
+              url:"<?=base_url('Admin_Dashboard/DeleteSubject')?>",
+              type:"post",
+               data:{sub_id:sub_id},
+               success:function(response)
+              {
+                 var obj=JSON.parse(response);
+                  console.log(obj.status);
+                 if(obj.status==0)
+                 {
+                    swal("Subject!", "Try again", "error").then(function(){
+                      location.reload();
+                    });
+                 }
+                 if(obj.status==1)
+                 {
+                  swal("Subject!", "Deleted", "success").then(function(){
+                      location.reload();
+                  });
+                 }
+              }
+
+             })
+            })
+           })
   </script>

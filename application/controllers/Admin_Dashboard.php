@@ -34,9 +34,15 @@ class Admin_Dashboard extends CI_Controller
 	{ 	
 		$data['class']=$this->db->get('class')->result();
 		$data['subject']=$this->db->get('subject')->result();
+		$data['video']=$this->getVideoDetails();
          $this->load->view('admin/Layout/header');
 		 $this->load->view('admin/Pages/addvideo',$data);
 		 $this->load->view('admin/Layout/footer');
+	}
+	public function getVideoDetails()
+	{
+	$data=$this->db->select('class.*,subject.*,video.*,class.id as cl_id,subject.id as sub_id,video.id as vid_id')->join('class','class.id=video.class_id')->join('subject','subject.id=video.subject_id')->from('video')->get()->result();
+	return $data;
 	}
 	public function addClass()
 	{ 		
@@ -49,9 +55,15 @@ class Admin_Dashboard extends CI_Controller
 	{ 		
        $data['class']=$this->db->get('class')->result();
 		$data['subject']=$this->db->get('subject')->result();
+		$data['notes']=$this->getNotesDetails();
 		 $this->load->view('admin/Layout/header');
 		 $this->load->view('admin/Pages/notes',$data);
 		 $this->load->view('admin/Layout/footer');
+	}
+	public function getNotesDetails()
+	{
+	$data=$this->db->select('class.*,subject.*,notes.*,class.id as cl_id,subject.id as sub_id')->join('class','class.id=notes.class_id')->join('subject','subject.id=notes.subject_id')->from('notes')->get()->result();
+	return $data;
 	}
 	public function viewQuery()
 	{ 		
@@ -75,21 +87,31 @@ class Admin_Dashboard extends CI_Controller
 	 		}
 	 	}
 	 	public function UpdateSubject(){
-	 		// print_r($_POST);
-	 		// echo"cntroller";
 	 		$subjecname=$this->input->post('subjecname');
 	 		$subjectid=$this->input->post('subjectid');
-	 		// print_r($subjecname);
-	 		// print_r($subjectid);
-	 		// die;
 	 		$data=array('subject'=>$subjecname);
 	 		$this->db->where('id',$subjectid);
 	 		 $res=$this->db->update('subject',$data);
 	 		if($res)
 	 		{	
 	 		 die(json_encode(array('status'=>1,'message'=>"add")));
+	 		}else
+	 		{
+	 		 die(json_encode(array('status'=>0,'message'=>'Try Again ')));
 	 		}
-	 		else
+	 	}
+	 	public function UpdateClass(){
+	 		// print_r($_POST);
+	 		// die;
+	 		$classname=$this->input->post('classname');
+	 		$classid=$this->input->post('classid');
+	 		$data=array('class'=>$classname);
+	 		$this->db->where('id',$classid);
+	 		 $res=$this->db->update('class',$data);
+	 		if($res)
+	 		{	
+	 		 die(json_encode(array('status'=>1,'message'=>"add")));
+	 		}else
 	 		{
 	 		 die(json_encode(array('status'=>0,'message'=>'Try Again ')));
 	 		}
@@ -211,11 +233,53 @@ class Admin_Dashboard extends CI_Controller
            
         }   
 
-	public function DeleteJobSeeker()
+	public function DeleteClass()
 	{
-		$data=array('user_id'=>$this->input->post('user_id'));
+		$data=array('id'=>$this->input->post('c_id'));
 			$this->db->where($data);
-		 $results=$this->db->delete('user_');
+		 $results=$this->db->delete('class');
+		 if( $results)
+		 {
+		 	die(json_encode(array('status'=>1,'data'=>$results)));
+		 }
+		 else
+		 {
+		 	die(json_encode(array('status'=>0,'data'=>$results)));
+		 }
+	}
+	public function DeleteSubject()
+	{
+		$data=array('id'=>$this->input->post('sub_id'));
+			$this->db->where($data);
+		 $results=$this->db->delete('subject');
+		 if( $results)
+		 {
+		 	die(json_encode(array('status'=>1,'data'=>$results)));
+		 }
+		 else
+		 {
+		 	die(json_encode(array('status'=>0,'data'=>$results)));
+		 }
+	}
+	public function DeleteVideo()
+	{
+		$data=array('id'=>$this->input->post('vid_id'));
+			$this->db->where($data);
+		 $results=$this->db->delete('video');
+		 if( $results)
+		 {
+		 	die(json_encode(array('status'=>1,'data'=>$results)));
+		 }
+		 else
+		 {
+		 	die(json_encode(array('status'=>0,'data'=>$results)));
+		 }
+	}
+	public function DeleteNotes()
+	{
+		$data=array('note_id'=>$this->input->post('note_id'));
+			$this->db->where($data);
+		 $results=$this->db->delete('notes');
 		 if( $results)
 		 {
 		 	die(json_encode(array('status'=>1,'data'=>$results)));

@@ -103,11 +103,64 @@
               </div>
             </div>
           </div>
+           <div class="row">
+          <div class="col-md-12">
+            <div class="card p-2">
+              <div class="card-header">
+                <h5 class="card-title">Notes</h5> 
+                <hr>
+              </div>
+              <div class="card-body">
+                <table id="" class="table ">
+                  <thead>
+                      <tr>
+                          <th>S.No.</th>
+                          <th>Class</th>
+                          <th>Subject</th>
+                          <th>Title</th>
+                          <th>Notes</th>
+                           <th></th>
+                          <th>Action</th>
+                      </tr>
+                  </thead>
+                 <tbody>
+                   <?php 
+                   $i=1;
+                   foreach($notes as $nt):?>
+                      <tr>
+                          <td><?php echo $i;?></td>
+                          <td><?=$nt->class?></td>
+                          <td><?=$nt->subject?></td>
+                          <td><?=$nt->title?></td>
+                          <td> 
+                            <a href="#" class="show_hide" data-content="toggle-text">Read Notes</a>
+                            <div class="notess"><?=$nt->notes?></div><td>
+                          <td><a href="javascript:void(0)"data-toggle="modal" note_id="<?=$nt->note_id?>" subname=""data-target="#exampleModal" class="btn btn-info fetchsubjectdata"><i class="fa fa-pencil" aria-hidden="true"></i></a><a href="javascript:void(0)" note_id="<?=$nt->note_id?>" class="btn btn-danger deletenote"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                      </tr>
+                   <?php $i++;
+                    endforeach;
+                    ?>
+                 </tbody>
+                </table>
+              </div>
+                
+              
+            </div>
+          </div>
+        </div>
         </div>
 <div class="overlay" ></div>
       </div>
 
       <script>
+        $(document).ready(function () {
+    $(".notess").hide();
+    $(".show_hide").on("click", function () {
+        var txt = $(".notess").is(':visible') ? 'Read More' : 'Read Less';
+        $(".show_hide").text(txt);
+        $(this).next('.notess').slideToggle(200);
+    });
+});
   $(document).on({
     ajaxStart: function(){
         $(".me").addClass("loading"); 
@@ -152,4 +205,32 @@
     
           })
       })
+       $(document).ready(function(){
+            $('.deletenote').on('click',function(){
+              var note_id=$(this).attr('note_id');
+             $.ajax({
+              url:"<?=base_url('Admin_Dashboard/DeleteNotes')?>",
+              type:"post",
+               data:{note_id:note_id},
+               success:function(response)
+              {
+                 var obj=JSON.parse(response);
+                  console.log(obj.status);
+                 if(obj.status==0)
+                 {
+                    swal("Notes!", "Try again", "error").then(function(){
+                      location.reload();
+                    });
+                 }
+                 if(obj.status==1)
+                 {
+                  swal("Subject!", "Deleted", "success").then(function(){
+                      location.reload();
+                  });
+                 }
+              }
+
+             })
+            })
+           })
   </script>

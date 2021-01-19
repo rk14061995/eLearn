@@ -17,7 +17,7 @@
         overflow: hidden;   
     }
     /* Make spinner image visible when body element has the loading class */
-    .me.loading .overlay{
+    .me.loading.overlay{
         display: block;
     }
 </style>
@@ -35,7 +35,7 @@
                 <hr>
               </div>
               <div class="card-body">
-                <form id="subject">  
+                <form id="upload">  
                   
                     <div class="row">
                       <div class="col-md-4">
@@ -89,12 +89,12 @@
             </div>
           </div>
         </div>
-      
+      <div class="overlay" ></div>
         <div class="row">
           <div class="col-md-12">
             <div class="card p-2">
               <div class="card-header">
-                <h5 class="card-title">Subjects</h5> 
+                <h5 class="card-title">Video</h5> 
                 <hr>
               </div>
               <div class="card-body">
@@ -102,11 +102,33 @@
                   <thead>
                       <tr>
                           <th>S.No.</th>
+                          <th>Class</th>
                           <th>Subject</th>
+                          <th>Title</th>
+                          <th>Video</th>
                           <th>Action</th>
                       </tr>
                   </thead>
-                 
+                 <tbody>
+                   <?php 
+                   $i=1;
+                   foreach($video as $vid):?>
+                      <tr>
+                          <td><?php echo $i;?></td>
+                          <td><?=$vid->class?></td>
+                          <td><?=$vid->subject?></td>
+                          <td><?=$vid->title?></td>
+                          <td>
+                            <video width="120" height="80" controls>
+                            <source src="<?=base_url('assetss/video/').$vid->video_url?>" type="video/mp4">
+                            </video>
+                           </td>
+                          <td><a href="javascript:void(0)"data-toggle="modal" video_id="<?=$vid->vid_id?>" subname=""data-target="#exampleModal" class="btn btn-info fetchsubjectdata"><i class="fa fa-pencil" aria-hidden="true"></i></a><a href="javascript:void(0)" video_id="<?=$vid->vid_id?>" class="btn btn-danger deletevideo"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                      </tr>
+                   <?php $i++;
+                    endforeach;
+                    ?>
+                 </tbody>
                 </table>
               </div>
                 
@@ -114,99 +136,7 @@
             </div>
           </div>
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 
-        <div class="row me">
-         
-          <div class="col-md-12 me">
-            <div class="card card-user">
-              <div class="card-header">
-                <h5 class="card-title">Add Video</h5>
-                 <button style=" margin-left: 988px"> view</button>  
-              </div>
-            
-
-                <form id="upload">
-                  <div class="row">
-                    <div class="col-md-6 pr-3 ">
-                      <div class="form-group col-md-6">
-                        <label><strong>Class</strong></label>
-                       <select  class="form-control " required name="class">
-            <option value="">Select Class</option>
-            <?php
-                      foreach ($class as $cls) 
-                      {
-                        echo '<option value="'.$cls->id.'">'.$cls->class.'</option>';
-            
-                      }
-                      ?>  
-          </select>
-                      </div>
-                    </div>
-                    </div>
-                    <div class="row">
-                    <div class="col-md-6 pr-3 ">
-                      <div class="form-group col-md-6">
-                        <label><strong>Subject</strong></label>
-                       
-                        <select  class="form-control " required name="subject">
-            <option value="">Select Subject</option>
-            <?php
-                      foreach ($subject as $sub) 
-                      {
-                        echo '<option value="'.$sub->id.'">'.$sub->subject.'</option>';
-            
-                      }
-                      ?>  
-          </select>
-                      </div>
-                    </div>
-                    </div>
-                     <div class="row">
-                    <div class="col-md-6 pr-3 ">
-                      <div class="form-group col-md-6">
-                        <label><strong>Title</strong></label>
-                        <input type="text" style="opacity:1;"name="title" class="form-control">
-                      </div>
-                    </div>
-                    </div>
-                  <div class="row">
-                    <div class="col-md-6 pr-3 ">
-                      <div class="form-group col-md-6">
-                        <label><strong>Video</strong></label>
-                          <input type="file" style="opacity:1;margin-left: 16px;" name="video_image"class="form-control1"  >
-                      </div>
-                    </div>
-                    </div>
-                  <div class="row">
-                     <div class="col-md-6 pr-1">
-                    <div class="px-2  ">
-                      <button type="submit" class="btn btn-primary btn-round">Add Video</button>
-                    </div>
-                  </div>
-                </div>
-                </form>
-              </div>
-            </div>
-          </div> -->
         </div>
-<div class="overlay" ></div>
       </div>
 
       <script>
@@ -254,4 +184,32 @@
     
           })
       })
+               $(document).ready(function(){
+            $('.deletevideo').on('click',function(){
+              var vid_id=$(this).attr('video_id');
+             $.ajax({
+              url:"<?=base_url('Admin_Dashboard/DeleteVideo')?>",
+              type:"post",
+               data:{vid_id:vid_id},
+               success:function(response)
+              {
+                 var obj=JSON.parse(response);
+                  console.log(obj.status);
+                 if(obj.status==0)
+                 {
+                    swal("Video!", "Try again", "error").then(function(){
+                      location.reload();
+                    });
+                 }
+                 if(obj.status==1)
+                 {
+                  swal("Video!", "Deleted", "success").then(function(){
+                      location.reload();
+                  });
+                 }
+              }
+
+             })
+            })
+           })
   </script>
