@@ -31,12 +31,13 @@
           <div class="col-md-12">
             <div class="card p-2">
               <div class="card-header">
-                <h5 class="card-title">Add Video</h5> 
+                <h5 class="card-title">Update Video</h5> 
                 <hr>
               </div>
               <div class="card-body">
                 <form id="upload">  
-                  
+                  <?php 
+                   foreach($video as $nt):?>
                     <div class="row">
                       <div class="col-md-4">
                         <label><strong>Class</strong></label>
@@ -45,7 +46,13 @@
                             <?php
                               foreach ($class as $cls) 
                               {
-                                echo '<option value="'.$cls->id.'">'.$cls->class.'</option>';
+
+                                if($nt->class_id==$cls->id)
+                                {
+                                 echo '<option selected value="'.$cls->id.'">'.$cls->class.'</option>';
+                              }else{
+                               echo '<option value="'.$cls->id.'">'.$cls->class.'</option>';
+                           }
                     
                               }
                             ?>  
@@ -58,22 +65,37 @@
                           <?php
                                     foreach ($subject as $sub) 
                                     {
-                                      echo '<option value="'.$sub->id.'">'.$sub->subject.'</option>';
-                          
+                                       if($nt->id==$sub->id)
+                                      {
+                                      echo '<option selected value="'.$sub->id.'">'.$sub->subject.'</option>';
+                                      }else{
+                                         echo '<option  value="'.$sub->id.'">'.$sub->subject.'</option>';
+                                      }
                                     }
                                     ?>  
                         </select>
                       </div>
                       <div class="col-md-4">
                         <label><strong>Title</strong></label>
-                        <input type="text" style="opacity:1;"name="title" class="form-control">
+                        <input type="text" style="opacity:1;"name="title" value="<?=$nt->title?>"class="form-control">
                       </div>
-                      
+                     
                     
                     </div>
                     <br>
                     <div class="row">
+                      <div class="col-md-6">
+                         
+                       <video width="320" height="180" controls>
+                            <source src="<?=base_url('assetss/video/').$nt->video_url?>" type="video/mp4">
+                            </video>
+                            <input type="hidden" value="<?=$nt->video_url?>"name="oldpath">
+                             <input type="hidden" value="<?=$nt->id?>"name="video_id">
+                      </div>
+                    </div>  <br><br> <br>
+                    <div class="row">
                       <div class="col-md-12">
+                         
                         <input type="file" style="opacity:1;margin-left: 16px;" name="video_image"class="form-control1"  >
                       </div>
                     </div>
@@ -82,6 +104,9 @@
                       <button type="submit" class="btn btn-primary btn-round">Add Video</button>
                       </div>
                     </div>
+                      <?php
+                    endforeach;
+                    ?>
                 </form>
               </div>
                 
@@ -90,7 +115,7 @@
           </div>
         </div>
       <div class="overlay" ></div>
-        <div class="row">
+        <!-- <div class="row">
           <div class="col-md-12">
             <div class="card p-2">
               <div class="card-header">
@@ -123,7 +148,7 @@
                             <source src="<?=base_url('assetss/video/').$vid->video_url?>" type="video/mp4">
                             </video>
                            </td>
-                          <td><a href="<?=base_url('Admin_Dashboard/EditVideo/').$vid->vid_id?>" video_id="<?=$vid->vid_id?>" subname="" class="btn btn-info"><i class="fa fa-pencil" aria-hidden="true"></i></a><a href="javascript:void(0)" video_id="<?=$vid->vid_id?>" class="btn btn-danger deletevideo"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                          <td><a href="javascript:void(0)"data-toggle="modal" video_id="<?=$vid->vid_id?>" subname=""data-target="#exampleModal" class="btn btn-info fetchsubjectdata"><i class="fa fa-pencil" aria-hidden="true"></i></a><a href="javascript:void(0)" video_id="<?=$vid->vid_id?>" class="btn btn-danger deletevideo"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
                       </tr>
                    <?php $i++;
                     endforeach;
@@ -135,7 +160,7 @@
               
             </div>
           </div>
-        </div>
+        </div> -->
         </div>
       </div>
 
@@ -155,7 +180,7 @@
               e.preventDefault();
               var formData=new FormData($(this)[0]);
            $.ajax({
-            url:"<?=base_url('Admin_Dashboard/videoupld')?>",
+            url:"<?=base_url('Admin_Dashboard/Updatevideoupld')?>",
              type:"post",
              catche:false,
              contentType:false,
@@ -169,13 +194,13 @@
                  if(obj.status==0)
                  {
                     swal("VIDEO!", "EMPTY", "error").then(function(){
-                      location.reload();
+                       location.reload();
                     });
                  }
                  if(obj.status==1)
                  {
-                  swal("VIDEO!", "Added", "success").then(function(){
-                      location.reload();
+                  swal("VIDEO!", "Updated", "success").then(function(){
+                       location.reload();
                   });
                  }
             }

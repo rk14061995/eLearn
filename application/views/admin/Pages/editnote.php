@@ -17,7 +17,7 @@
         overflow: hidden;   
     }
     /* Make spinner image visible when body element has the loading class */
-    .me.loading .overlay{
+    .me.loading.overlay{
         display: block;
     }
 </style>
@@ -29,7 +29,7 @@
           <div class="col-md-12 me">
             <div class="card card-user">
               <div class="card-header">
-                <h5 class="card-title">Add Notes</h5>
+                <h5 class="card-title">Updates Notes</h5>
                  <!-- <button style=" margin-left: 988px"> view</button>   -->
               </div>
               <!-- <div class="loat-right" style=" margin-left: 988px">
@@ -38,6 +38,8 @@
                
                <div class="card-body">
                 <form id="upload">
+                   <?php 
+                     foreach($notes as $nt): ?>
                   <div class="row">
                     <div class="form-group col-md-4">
                      
@@ -47,8 +49,12 @@
             <?php
                       foreach ($class as $cls) 
                       {
-                        echo '<option value="'.$cls->id.'">'.$cls->class.'</option>';
-            
+                        if($nt->class_id==$cls->id)
+                          {
+                          echo '<option selected value="'.$cls->id.'">'.$cls->class.'</option>';
+                          }else{
+                             echo '<option value="'.$cls->id.'">'.$cls->class.'</option>';
+                          }
                       }
                       ?>  
           </select>
@@ -64,18 +70,23 @@
             <?php
                       foreach ($subject as $sub) 
                       {
-                        echo '<option value="'.$sub->id.'">'.$sub->subject.'</option>';
-            
+                        if($nt->subject_id==$sub->id)
+                          {
+                            echo '<option value="'.$sub->id.'" selected>'.$sub->subject.'</option>';
+                          }else{
+                            echo '<option value="'.$sub->id.'" >'.$sub->subject.'</option>';
+                          }
+
                       }
                       ?>  
           </select>
                      
                     </div>
                    
-                    <div class="col-md-4 form-group ">
-                     
+                    <div class="col-md-4 form-group ">                    
                         <label><strong>Title</strong></label>
-                        <input type="text" style="opacity:1;"name="title" class="form-control">
+                        <input type="text" value="<?=$nt->title?>"style="opacity:1;"name="title" class="form-control">
+                        <input type="hidden" value="<?=$nt->note_id?>"style="opacity:1;"name="notess_id" class="form-control">
                       
                     </div>
                     </div>
@@ -83,7 +94,7 @@
                     <div class="col-lg-12 pr-3 ">
                       <div class="form-group col-md-12">
                         <label><strong>Notes</strong></label>
-                          <textarea name="editor1"></textarea>
+                          <textarea name="editor1"><?=$nt->notes?></textarea>
                 <script>
                         CKEDITOR.replace( 'editor1' );
                 </script>
@@ -93,75 +104,25 @@
                   <div class="row">
                      <div class="col-md-6 pr-1">
                     <div class="px-2  ">
-                      <button type="submit" class="btn btn-primary btn-round">Add Notes</button>
+                      <button type="submit" class="btn btn-primary btn-round">Update Notes</button>
                     </div>
                   </div>
                 </div>
+                <?php 
+                    endforeach;
+                    ?>
                 </form>
               </div>
               </div>
             </div>
           </div>
-           <div class="row">
-          <div class="col-md-12">
-            <div class="card p-2">
-              <div class="card-header">
-                <h5 class="card-title">Notes</h5> 
-                <hr>
-              </div>
-              <div class="card-body">
-                <table id="" class="table ">
-                  <thead>
-                      <tr>
-                          <th>S.No.</th>
-                          <th>Class</th>
-                          <th>Subject</th>
-                          <th>Title</th>
-                          
-                         
-                          <th>Action</th>
-                      </tr>
-                  </thead>
-                 <tbody>
-                   <?php 
-                   $i=1;
-                   foreach($notes as $nt):?>
-                      <tr>
-                          <td><?php echo $i;?></td>
-                          <td><?=$nt->class?></td>
-                          <td><?=$nt->subject?></td>
-                          <td><?=$nt->title?></td>
-                          <!-- <td> 
-                            <a href="javascript:void(0)" class="show_hide" >Read Notes</a>
-                            <div class="notess"><?=$nt->notes?></div>
-                            <td> -->
-                          <td><a href="<?=base_url('Admin_Dashboard/EditNotes/').$nt->note_id?>"note_id="<?=$nt->note_id?>" subname="" class="btn btn-info fetchsubjectdata"><i class="fa fa-pencil" aria-hidden="true"></i></a><a href="javascript:void(0)" note_id="<?=$nt->note_id?>" class="btn btn-danger deletenote"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
-                      </tr>
-                   <?php $i++;
-                    endforeach;
-                    ?>
-                 </tbody>
-                </table>
-              </div>
-                
-              
-            </div>
-          </div>
-        </div>
+          
         </div>
 <div class="overlay" ></div>
       </div>
 
       <script>
-        $(document).ready(function () {
-    $(".notess").hide();
-    $(".show_hide").on("click", function () {
-        var txt = $(".notess").is(':visible') ? 'Read More' : 'Read Less';
-        $(".show_hide").text(txt);
-        $(this).next('.notess').slideToggle(200);
-    });
-});
-
+      
   $(document).on({
     ajaxStart: function(){
         $(".me").addClass("loading"); 
@@ -172,12 +133,12 @@
 });
       $(document).ready(function(){
           $('#upload').submit(function(e){
-            //  $("body").html(data);
+             // $(".me").html(data);
                $('#loading').show();
               e.preventDefault();
               var formData=new FormData($(this)[0]);
            $.ajax({
-            url:"<?=base_url('Admin_Dashboard/addNotes')?>",
+            url:"<?=base_url('Admin_Dashboard/UpdateNotes')?>",
              type:"post",
              catche:false,
              contentType:false,
@@ -196,7 +157,7 @@
                  }
                  if(obj.status==1)
                  {
-                  swal("NOTES!", "Added", "success").then(function(){
+                  swal("NOTES!", "Update", "success").then(function(){
                       location.reload();
                   });
                  }
@@ -206,32 +167,4 @@
     
           })
       })
-       $(document).ready(function(){
-            $('.deletenote').on('click',function(){
-              var note_id=$(this).attr('note_id');
-             $.ajax({
-              url:"<?=base_url('Admin_Dashboard/DeleteNotes')?>",
-              type:"post",
-               data:{note_id:note_id},
-               success:function(response)
-              {
-                 var obj=JSON.parse(response);
-                  console.log(obj.status);
-                 if(obj.status==0)
-                 {
-                    swal("Notes!", "Try again", "error").then(function(){
-                      location.reload();
-                    });
-                 }
-                 if(obj.status==1)
-                 {
-                  swal("Notes!", "Deleted", "success").then(function(){
-                      location.reload();
-                  });
-                 }
-              }
-
-             })
-            })
-           })
   </script>
